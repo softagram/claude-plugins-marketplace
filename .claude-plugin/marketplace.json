@@ -1,0 +1,26 @@
+{
+  "name": "softagram-plugins",
+  "owner": {
+    "name": "Ville Laitila / Softagram Oy",
+    "email": "ville@softagram.com"
+  },
+  "metadata": {
+    "description": "Softagram plugins for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "goodreason",
+      "source": {
+        "source": "github",
+        "repo": "softagram/goodreason-agents-setup"
+      },
+      "description": "Systems-thinking agent topology with four specialized agents (Strategist, Architect, Implementer, Evolution) for complex engineering tasks.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Ville Laitila / Softagram Oy"
+      },
+      "license": "MIT",
+      "keywords": ["agents", "systems-thinking", "meta-ontology", "workflow"]
+    }
+  ]
+}
