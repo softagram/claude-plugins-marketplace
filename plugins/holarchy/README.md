@@ -1,6 +1,6 @@
 # holarchy
 
-Makes GoodReason knowledge holarchies — repositories generated from
+Makes knowledge holarchies — repositories generated from the private 
 [gr-holarchy-template](https://github.com/softagram/gr-holarchy-template) or built by
 the same conventions — a shared memory in **every** Claude Code session, not only in
 sessions opened inside the holarchy repo.
