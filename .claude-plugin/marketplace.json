@@ -21,6 +21,17 @@
       },
       "license": "MIT",
       "keywords": ["agents", "systems-thinking", "meta-ontology", "workflow"]
+    },
+    {
+      "name": "holarchy",
+      "source": "./plugins/holarchy",
+      "description": "Makes your GoodReason knowledge holarchies a shared memory in every session: finds the holarchy that covers the task, follows its own CLAUDE.md, answers with sources and writes new knowledge back by its rules.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Matti Mäki"
+      },
+      "license": "MIT",
+      "keywords": ["holarchy", "goodreason", "knowledge-base", "meta-ontology"]
     }
   ]
 }
