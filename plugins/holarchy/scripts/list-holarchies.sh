@@ -50,7 +50,10 @@ read_registry() {
 }
 
 [ -n "${CLAUDE_PROJECT_DIR:-}" ] && read_registry "$CLAUDE_PROJECT_DIR/.claude/holarchies"
-read_registry "$HOME/.claude/holarchies"
+# Personal registry lives in the active Claude Code config dir, so separate profiles
+# (CLAUDE_CONFIG_DIR=~/.claude-<x>) keep separate holarchy lists.
+config_dir="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
+read_registry "${config_dir/#\~/$HOME}/holarchies"
 
 if [ -d "$home_dir" ]; then
   for d in "$home_dir"/*/; do
