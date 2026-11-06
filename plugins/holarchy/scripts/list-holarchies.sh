@@ -63,4 +63,4 @@ if [ -d "$home_dir" ]; then
 fi
 
 [ -z "$out" ] && exit 0
-printf 'Knowledge holarchies available to this user (use the holarchy skill when a task touches their scope):\n%s' "$out"
+printf 'Knowledge holarchies connected to this session:\n%s\nThese hold the decisions, responsibilities and system facts for their scope. When a task touches one of them, invoke the holarchy skill (holarchy:holarchy) before answering or changing code; it explains how to fetch a holarchy that is not cloned here.\n' "$out"
