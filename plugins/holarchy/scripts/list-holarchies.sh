@@ -5,6 +5,8 @@
 #   1. $CLAUDE_PROJECT_DIR/.claude/holarchies   — per project; committed with a code repo
 #   2. ~/.claude/holarchies                      — per user
 #   3. every directory under $HOLARCHY_HOME (default ~/holarchies) with a root .holon-* marker
+#      — the one this session runs in gets a full line, the others are listed by name only;
+#        register a holarchy in 1 or 2 to always get its full line
 #
 # Registry line format:  <owner/repo> [local path]   ('#' starts a comment)
 #
@@ -14,6 +16,8 @@ set -u
 home_dir="${HOLARCHY_HOME:-$HOME/holarchies}"
 seen=" "
 out=""
+others=""
+here=$(cd "${CLAUDE_PROJECT_DIR:-$PWD}" 2>/dev/null && pwd -P)
 
 # Name from the root marker, scope from the line after "## What is this?" in CLAUDE.md.
 describe() {
@@ -61,8 +65,18 @@ if [ -d "$home_dir" ]; then
     ls -A "$d" 2>/dev/null | grep -q '^\.holon-' || continue
     repo=$(git -C "$d" remote get-url origin 2>/dev/null | sed -E 's#^(https://[^/]+/|git@[^:]+:)##; s#\.git$##')
     case "$seen" in *" $d "*) continue ;; esac
-    add "$repo" "$d"
+    # Only the holarchy this session runs in gets a full line. The other clones are listed by
+    # name: a description of every clone costs context in every session and is rarely needed.
+    dreal=$(cd "$d" 2>/dev/null && pwd -P)
+    case "$here/" in
+      "$dreal"/*) add "$repo" "$d" ;;
+      *) seen="$seen$d "; others="$others${others:+, }$(basename "$d")" ;;
+    esac
   done
+fi
+
+if [ -n "$others" ]; then
+  out="$out- Also cloned under $home_dir, listed by name only (scope: read <name>/CLAUDE.md): $others"$'\n'
 fi
 
 [ -z "$out" ] && exit 0

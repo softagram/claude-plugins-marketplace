@@ -35,7 +35,10 @@ my-org/product-holarchy        ~/holarchies/product-holarchy
 my-org/infra-holarchy
 ```
 
-Clones under `~/holarchies/` (or `$HOLARCHY_HOME`) are found automatically. If you run
+Clones under `~/holarchies/` (or `$HOLARCHY_HOME`) are found automatically. Of those, only the
+holarchy the session runs in is listed with its description; the other clones are listed by
+name, so that a large `~/holarchies/` does not fill every session's context. A holarchy in a
+registry file always gets its full line. If you run
 separate Claude profiles (`CLAUDE_CONFIG_DIR`), each reads its own `holarchies` registry; set
 `HOLARCHY_HOME` per profile (`env` in that profile's `settings.json`) to keep their clone
 directories apart too. Register customer-owned or restricted holarchies in that context's
